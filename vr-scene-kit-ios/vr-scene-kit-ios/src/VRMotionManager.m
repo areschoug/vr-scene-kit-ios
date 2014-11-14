@@ -39,38 +39,46 @@
     
     __weak VRMotionManager *ws = self;
     
-    [_motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical toQueue:[[NSOperationQueue alloc] init] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
+    [_motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXTrueNorthZVertical toQueue:[[NSOperationQueue alloc] init] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+#pragma TODO: This needs to be tested
+            SCNVector3 rotation;
+            BOOL fancyMath = NO;
             
-            SCNVector3 referenceGravityVector = SCNVector3Make(-1, 0, 0);
-            SCNVector3 currentGravityVector;
-            SCNVector3 sideTiltVector;
+            if (fancyMath) {
+                
+                rotation = SCNVector3Make(deviceMotion.attitude.roll, deviceMotion.attitude.pitch, deviceMotion.attitude.yaw);
+                
+            } else {
+                
+                SCNVector3 referenceGravityVector = SCNVector3Make(-1, 0, 0);
+                SCNVector3 currentGravityVector;
+                SCNVector3 sideTiltVector;
+                
+                currentGravityVector = SCNVector3Make(deviceMotion.gravity.x, 0 , deviceMotion.gravity.z);
+                sideTiltVector = SCNVector3Make(deviceMotion.gravity.x, deviceMotion.gravity.y, 0);
+                
+                currentGravityVector = SCNVector3Normalize(currentGravityVector);
+                sideTiltVector = SCNVector3Normalize(sideTiltVector);
+                
+                float sideTiltAngle = SCNVector3AngleBetween(sideTiltVector, referenceGravityVector);
+                float verticalAngle = SCNVector3AngleBetween(currentGravityVector, referenceGravityVector);
+                
+                if(isnan(sideTiltAngle)) sideTiltAngle = 0;
+                if(isnan(verticalAngle)) verticalAngle = 0;
+                
+                if(currentGravityVector.z < 0) verticalAngle = -verticalAngle;
+                if(sideTiltVector.y > 0) sideTiltAngle = -sideTiltAngle;
+                
+                rotation = SCNVector3Make(verticalAngle * -1, (deviceMotion.attitude.yaw + M_PI) * -1,-sideTiltAngle);
+            }
             
-            currentGravityVector = SCNVector3Make(deviceMotion.gravity.x, 0 , deviceMotion.gravity.z);
-            sideTiltVector = SCNVector3Make(deviceMotion.gravity.x, deviceMotion.gravity.y, 0);
-            
-            currentGravityVector = SCNVector3Normalize(currentGravityVector);
-            sideTiltVector = SCNVector3Normalize(sideTiltVector);
-            
-            float sideTiltAngle = SCNVector3AngleBetween(sideTiltVector, referenceGravityVector);
-            float verticalAngle = SCNVector3AngleBetween(currentGravityVector, referenceGravityVector);
-            
-            if(isnan(sideTiltAngle)) sideTiltAngle = 0;
-            if(isnan(verticalAngle)) verticalAngle = 0;
-            
-            if(currentGravityVector.z < 0) verticalAngle = -verticalAngle;
-            if(sideTiltVector.y > 0) sideTiltAngle = -sideTiltAngle;
-            
-            SCNVector3 rotationVector = SCNVector3Make(verticalAngle * -1, (deviceMotion.attitude.yaw + M_PI) * -1,-sideTiltAngle);
-            
-            if (ws.didUpdateEulerAngles) ws.didUpdateEulerAngles(rotationVector);
-            if (ws.cameraNode) [ws.cameraNode setEulerAngles:rotationVector];
-            
+            if (ws.didUpdateEulerAngles) ws.didUpdateEulerAngles(rotation);
+            if (ws.cameraNode) [ws.cameraNode setEulerAngles:rotation];
         });
-        
         
     }];
 }
