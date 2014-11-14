@@ -30,6 +30,7 @@
     
     //vr view
     _vrView = [[VRView alloc] initWithFrame:self.view.bounds];
+    _vrView.backgroundColor = [UIColor blackColor];
     [_vrView setScene:scene];
     [self.view addSubview:_vrView];
     
@@ -43,7 +44,36 @@
     
     //ship
     SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:NO];
-    ship.position = SCNVector3Make(0, 0, -10);
+    ship.position = SCNVector3Make(0, 10, 0);
+    [ship runAction:[SCNAction rotateToX:M_PI/2 y:0 z:0 duration:3]];
+    
+    //sphere
+    SCNNode *sphereNode = [SCNNode node];
+    SCNSphere *sphere = [SCNSphere sphereWithRadius:0.2];
+    sphere.firstMaterial.diffuse.contents = [UIColor redColor];
+    [sphereNode addChildNode:[SCNNode nodeWithGeometry:sphere]];
+    sphereNode.position = SCNVector3Make(5, 0, 0);
+    [scene.rootNode addChildNode:sphereNode];
+    
+    //cone
+    SCNNode *coneNode = [SCNNode node];
+    SCNCone *cone = [SCNCone coneWithTopRadius:0 bottomRadius:1 height:0.4];
+    cone.firstMaterial.diffuse.contents = [UIColor greenColor];
+    [coneNode addChildNode:[SCNNode nodeWithGeometry:cone]];
+    coneNode.position = SCNVector3Make(-5, 0, 0);
+    [scene.rootNode addChildNode:coneNode];
+    
+    //globe node
+    
+    SCNNode *globeNode = [SCNNode node];
+    SCNSphere *globe = [SCNSphere sphereWithRadius:30];
+    globe.firstMaterial.diffuse.contents = [UIImage imageNamed:@"earth_diffuse.jpg"];
+    globe.firstMaterial.specular.contents = [UIImage imageNamed:@"earth_specular.jpg"];
+    globe.firstMaterial.ambient.contents = [UIImage imageNamed:@"earth_ambient.jpg"];
+    globe.firstMaterial.normal.contents = [UIImage imageNamed:@"earth_normal.jpg"];
+    globe.firstMaterial.doubleSided = YES;
+    [globeNode addChildNode:[SCNNode nodeWithGeometry:globe]];
+//    [scene.rootNode addChildNode:globeNode];
     
 }
 
