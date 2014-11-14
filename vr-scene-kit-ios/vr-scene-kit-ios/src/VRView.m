@@ -71,16 +71,22 @@ static const float kCameraPositionDiff = 0.2;
 -(void)setShaderType:(t_vr_camera_shader)shaderType{
     _shaderType = shaderType;
     
-    NSURL *url = nil;
+    NSString *filename = nil;
     
     if (shaderType == t_vr_camera_shader_pincushion_distortion) {
-        url = [[NSBundle mainBundle] URLForResource:@"Pincushion" withExtension:@"plist"];
+        filename = @"Pincushion";
     } else {
-        url = [[NSBundle mainBundle] URLForResource:@"Passthrough" withExtension:@"plist"];
+        filename = @"Passthrough";
     }
     
+    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:url];
-    SCNTechnique *technique = [SCNTechnique techniqueWithDictionary:dict];
+    
+    [self setTechnique:[SCNTechnique techniqueWithDictionary:dict]];
+}
+
+-(void)setTechnique:(SCNTechnique *)technique{
+    _technique = technique;
     self.leftSceneView.technique = technique;
     self.rightSceneView.technique = technique;
 }

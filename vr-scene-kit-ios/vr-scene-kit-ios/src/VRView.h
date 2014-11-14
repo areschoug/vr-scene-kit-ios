@@ -26,4 +26,6 @@ typedef enum {
 @property (nonatomic, readonly) SCNView *leftSceneView;
 @property (nonatomic, readonly) SCNView *rightSceneView;
 
+
+@property (nonatomic) SCNTechnique *technique;
 @end
