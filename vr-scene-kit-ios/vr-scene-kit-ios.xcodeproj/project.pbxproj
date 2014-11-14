@@ -99,8 +99,8 @@
 				30D960FE1A169DC200F9A8E1 /* AppDelegate.m */,
 				30D961001A169DC200F9A8E1 /* ViewController.h */,
 				30D961011A169DC200F9A8E1 /* ViewController.m */,
-				30D961061A169DC200F9A8E1 /* Images.xcassets */,
 				30D961081A169DC200F9A8E1 /* LaunchScreen.xib */,
+				30D961061A169DC200F9A8E1 /* Images.xcassets */,
 				30D9613D1A16A2D300F9A8E1 /* art.scnassets */,
 				30D960F91A169DC200F9A8E1 /* Supporting Files */,
 			);
