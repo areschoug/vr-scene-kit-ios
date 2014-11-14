@@ -91,6 +91,11 @@ static const float kCameraPositionDiff = 0.2;
     self.rightSceneView.technique = technique;
 }
 
+-(void)setAutoenablesDefaultLighting:(BOOL)autoenablesDefaultLighting{
+    _autoenablesDefaultLighting = autoenablesDefaultLighting;
+    _leftSceneView.autoenablesDefaultLighting = autoenablesDefaultLighting;
+    _rightSceneView.autoenablesDefaultLighting = autoenablesDefaultLighting;
+}
 @end
 
 

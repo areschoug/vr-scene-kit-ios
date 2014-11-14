@@ -28,4 +28,6 @@ typedef enum {
 
 
 @property (nonatomic) SCNTechnique *technique;
+@property (nonatomic, assign) BOOL autoenablesDefaultLighting;
+
 @end
