@@ -11,17 +11,12 @@
 
 static const float kCameraPositionDiff = 0.2;
 
-@interface VRView()<SCNSceneRendererDelegate>
+@interface VRView()
 
 @property SCNView *leftSceneView;
 @property SCNView *rightSceneView;
 
 @property VRCamera *camera;
-@property UIView *debugView;
-
-@property UITapGestureRecognizer *trippleTapGesture;
-
-@property EAGLContext *glContext;
 
 @end
 
@@ -40,11 +35,9 @@ static const float kCameraPositionDiff = 0.2;
     
     _leftSceneView = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width/2, self.frame.size.height)];
     _leftSceneView.userInteractionEnabled = NO;
-    _leftSceneView.delegate = self;
     
     _rightSceneView = [[SCNView alloc] initWithFrame:CGRectMake(self.frame.size.width/2, 0, self.frame.size.width/2, self.frame.size.height)];
     _rightSceneView.userInteractionEnabled = NO;
-    [_rightSceneView setAutoenablesDefaultLighting:YES];
     _camera = [VRCamera node];
     _camera.cameraPositionDiff = kCameraPositionDiff;
     
@@ -87,8 +80,8 @@ static const float kCameraPositionDiff = 0.2;
 
 -(void)setTechnique:(SCNTechnique *)technique{
     _technique = technique;
-    self.leftSceneView.technique = technique;
-    self.rightSceneView.technique = technique;
+    _leftSceneView.technique = technique;
+    _rightSceneView.technique = technique;
 }
 
 -(void)setAutoenablesDefaultLighting:(BOOL)autoenablesDefaultLighting{
@@ -96,6 +89,7 @@ static const float kCameraPositionDiff = 0.2;
     _leftSceneView.autoenablesDefaultLighting = autoenablesDefaultLighting;
     _rightSceneView.autoenablesDefaultLighting = autoenablesDefaultLighting;
 }
+
 @end
 
 
