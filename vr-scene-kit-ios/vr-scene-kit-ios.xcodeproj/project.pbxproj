@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3068FDB01A16A83B00779C8A /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3068FDAF1A16A83B00779C8A /* SceneKit.framework */; };
 		30D960FC1A169DC200F9A8E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D960FB1A169DC200F9A8E1 /* main.m */; };
 		30D960FF1A169DC200F9A8E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D960FE1A169DC200F9A8E1 /* AppDelegate.m */; };
 		30D961021A169DC200F9A8E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D961011A169DC200F9A8E1 /* ViewController.m */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3068FDAF1A16A83B00779C8A /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		30D960F61A169DC200F9A8E1 /* vr-scene-kit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vr-scene-kit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D960FA1A169DC200F9A8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30D960FB1A169DC200F9A8E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,17 +59,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3068FDB01A16A83B00779C8A /* SceneKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3068FDB11A16A84A00779C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3068FDAF1A16A83B00779C8A /* SceneKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		30D960ED1A169DC200F9A8E1 = {
 			isa = PBXGroup;
 			children = (
 				30D960F81A169DC200F9A8E1 /* vr-scene-kit-ios */,
 				30D960F71A169DC200F9A8E1 /* Products */,
+				3068FDB11A16A84A00779C8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -323,7 +335,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andreas Areschoug (454456593Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andreas Areschoug (454456593Q)";
 				INFOPLIST_FILE = "vr-scene-kit-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -334,6 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "vr-scene-kit-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -358,6 +374,7 @@
 				30D9611B1A169DC200F9A8E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
