@@ -22,6 +22,7 @@
 		30D961371A169E4600F9A8E1 /* PincushionShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 30D961311A169E4600F9A8E1 /* PincushionShader.fsh */; };
 		30D961381A169E4600F9A8E1 /* PincushionShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 30D961321A169E4600F9A8E1 /* PincushionShader.vsh */; };
 		30D9613C1A169EDB00F9A8E1 /* VRView+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D9613B1A169EDB00F9A8E1 /* VRView+Debug.m */; };
+		30D9613E1A16A2D300F9A8E1 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D9613D1A16A2D300F9A8E1 /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		30D961321A169E4600F9A8E1 /* PincushionShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PincushionShader.vsh; sourceTree = "<group>"; };
 		30D9613A1A169EDB00F9A8E1 /* VRView+Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VRView+Debug.h"; sourceTree = "<group>"; };
 		30D9613B1A169EDB00F9A8E1 /* VRView+Debug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VRView+Debug.m"; sourceTree = "<group>"; };
+		30D9613D1A16A2D300F9A8E1 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				30D961011A169DC200F9A8E1 /* ViewController.m */,
 				30D961061A169DC200F9A8E1 /* Images.xcassets */,
 				30D961081A169DC200F9A8E1 /* LaunchScreen.xib */,
+				30D9613D1A16A2D300F9A8E1 /* art.scnassets */,
 				30D960F91A169DC200F9A8E1 /* Supporting Files */,
 			);
 			path = "vr-scene-kit-ios";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D961341A169E4600F9A8E1 /* PassthroughShader.fsh in Resources */,
+				30D9613E1A16A2D300F9A8E1 /* art.scnassets in Resources */,
 				30D961361A169E4600F9A8E1 /* Pincushion.plist in Resources */,
 				30D961371A169E4600F9A8E1 /* PincushionShader.fsh in Resources */,
 				30D961351A169E4600F9A8E1 /* PassthroughShader.vsh in Resources */,
