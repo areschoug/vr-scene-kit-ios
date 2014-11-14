@@ -49,6 +49,12 @@ static const float kCameraPositionDiff = 0.2;
 }
 
 #pragma mark - setter
+-(void)setBackgroundColor:(UIColor *)backgroundColor{
+    [super setBackgroundColor:backgroundColor];
+    _leftSceneView.backgroundColor = backgroundColor;
+    _rightSceneView.backgroundColor = backgroundColor;
+}
+
 -(void)setScene:(SCNScene *)scene{
     _scene = scene;
 
